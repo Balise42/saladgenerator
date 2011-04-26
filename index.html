@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+  </head>
+  <body>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <button id="moar">+</button><br> 
+    <script>
+    current = 0;
+				function create_selector(){
+					$("body").append("<select name='selector" + current + "' id='selector" + current +"'></select>");
+					$("body").append("<span id='result" + current + "'></span>");
+					$("body").append("<button name='change" + current + "'>Aut'chose!</button>");
+					$("body").append("<br>");
+					$("#selector"+current).append("<option>Légume</option>");
+					current++;
+				}
+      $(document).ready(function(){
+				
+				counter = 5;
+				for (var i = 1; i<= counter; i++) {
+					create_selector();
+				}
+				$("#moar").click(function(){
+						create_selector();
+        });
+      }); 
+    </script>
+  </body>
+</html>
