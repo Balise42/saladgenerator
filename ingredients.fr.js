@@ -1,3 +1,6 @@
+cat_salad = ["veggies", "proteins", "cheese", "extra", "base"];
+cat_salad_fr = {"base": "Base", "veggies": "Légumes", "cheese": "Fromage", "proteins": "Protéines", "extra": "Extra"};
+
 var veggies = [
   "Tomate", 
   "Avocat",

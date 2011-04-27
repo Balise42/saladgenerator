@@ -13,31 +13,14 @@
     <button id="lucky">I'm feeling lucky... kinda...</button><br>
     <script>
 			var current = 0;
-
+			var type = "salad"
+			var lang = "fr"
+			var categories = eval("cat_"+ type);
+			var catnames = eval("cat_" + type + "_" + lang);
 			function choose_element(i){
-				var choice = $("#selector"+i).val()
-				$("#result"+i).empty();
-				switch(choice){
-					case "veggies":
-						elems = veggies;
-						break;
-					case "cheese":
-						elems = cheese;
-						break;
-					case "proteins":
-						elems = proteins;
-						break;
-					case "extra":
-						elems = extra;
-						break;
-					case "base":
-						elems = base;
-						break;
-					default:
-						elems = [];
-						break;
-				}
+				var elems = eval($("#selector"+i).val())
 				var index=Math.floor(Math.random()*elems.length)
+				$("#result"+i).empty();
 				$("#result"+i).append(elems[index]);
 			}
 			
@@ -46,12 +29,10 @@
 				$("body").append("<span id='result" + current + "'></span>");
 				$("body").append("<button name='change" + current + "' id='change"+current + "'>Aut'chose!</button>");
 				$("body").append("<br>");
-				$("#selector"+current).append("<option></option>");
-				$("#selector"+current).append("<option value='base'>Base</option>");
-				$("#selector"+current).append("<option value='veggies'>Légume</option>");
-				$("#selector"+current).append("<option value='cheese'>Fromage</option>");
-				$("#selector"+current).append("<option value='proteins'>Protéines</option>");
-				$("#selector"+current).append("<option value='extra'>Extra</option>");
+				$("#selector"+current).append("<option></option>");		
+				for (key in catnames){
+					$("#selector"+current).append("<option value='"+key+"'>" + catnames[key] +"</option>");
+				}
 				$("#selector"+current).change(function(event){
 					choose_element(event.target.id.replace("selector", ""));
 				});
@@ -88,7 +69,7 @@
 				}
 			}
 			function lucky(){
-				categories = ["veggies", "proteins", "cheese", "extra", "base"];
+				
 				for (var i = 0; i<current; i++){
 					var cat= categories[Math.floor(Math.random()*categories.length)];
 					$("#selector"+i).val(cat);
