@@ -6,29 +6,38 @@
   </head>
   <body>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-    <script src="ingredients.fr.js"></script>
+    <script src="ingredients.js"></script>
+    <input type="radio" name="lang" value="fr" checked>Français</input>
+    <input type="radio" name="lang" value="en">English</input><br>
+    <input type="radio" name="type-o-dish" VALUE="salad">Salad</input>
+    <input type="radio" name="type-o-dish" VALUE="pizza">Pizza</input>
+    <input type="radio" name="type-o-dish" VALUE="pasta">Pasta</input>
+    <input type="radio" name="type-o-dish" VALUE="risotto">Risotto</input>
+    <br>
     <button id="moar">+</button><br> 
     <button id="premix">Prémix</button>
     <input type="checkbox" id="needbase">Base ?</input><br>
     <button id="lucky">I'm feeling lucky... kinda...</button><br>
     <script>
 			var current = 0;
-			var type = "salad"
-			var lang = "fr"
-			var categories = eval("cat_"+ type);
-			var catnames = eval("cat_" + type + "_" + lang);
+			var type;
+			var categories;
+			var catnames;
+			var lang;
+
 			function choose_element(i){
-				var elems = eval($("#selector"+i).val())
-				var index=Math.floor(Math.random()*elems.length)
+				var elems = eval(type + "_" + lang + "_" + $("#selector"+i).val());
+				var index=Math.floor(Math.random()*elems.length);
 				$("#result"+i).empty();
 				$("#result"+i).append(elems[index]);
 			}
 			
 			function create_selector(){
+				$("body").append("<p>");
 				$("body").append("<select name='selector" + current + "' id='selector" + current +"'></select>");
 				$("body").append("<span id='result" + current + "'></span>");
 				$("body").append("<button name='change" + current + "' id='change"+current + "'>Aut'chose!</button>");
-				$("body").append("<br>");
+				$("body").append("</p>");
 				$("#selector"+current).append("<option></option>");		
 				for (key in catnames){
 					$("#selector"+current).append("<option value='"+key+"'>" + catnames[key] +"</option>");
@@ -41,25 +50,62 @@
 				});
 				current++;
 			}
+			
       $(document).ready(function(){
+
+				$("#moar").click(create_selector);
+				$("#premix").click(premix);
+				$("#lucky").click(lucky);
+				$("input[type=radio]").click(redraw);
+      }); 
+      
+      function redraw(){
+				for (var i = 0; i<current; i++){
+					$("#selector"+i).remove();
+					$("#change"+i).remove();
+					$("#result"+i).remove();
+					$("p").remove();
+				}
+				type = $("input[name=type-o-dish]:checked").val();
+				lang = $("input[name=lang]:checked").val();
+				categories = eval("cat_"+ type);
+				catnames = eval("cat_" + type + "_" + lang);
+				current = 0;
 				for (var i = 0; i< 5; i++) {
 					create_selector();
 				}
-				$("#moar").click(create_selector);
-				$("#premix").click(premix);
-				$("#lucky").click(lucky);  
-      }); 
+			}
+      
       function premix(){
-				$("#selector0").val("veggies");
-				$("#selector1").val("veggies");
-				$("#selector2").val("proteins");
-				$("#selector3").val("cheese");
-				$("#selector4").val("extra");
-				if($("#needbase").attr('checked')){
-					if(current <= 5){
-						create_selector();
-					}
-					$("#selector5").val("base");
+				switch(type){
+					case("salad"):
+						$("#selector0").val("veggies");
+						$("#selector1").val("veggies");
+						$("#selector2").val("proteins");
+						$("#selector3").val("cheese");
+						$("#selector4").val("extra");
+						if($("#needbase").attr('checked')){
+							if(current <= 5){
+								create_selector();
+							}
+							$("#selector5").val("base");
+						}
+						break;
+					case("pizza"):
+					case("risotto"):
+						$("#selector0").val("veggies");
+						$("#selector1").val("veggies");
+						$("#selector2").val("veggies");
+						$("#selector3").val("cheese");
+						$("#selector4").val("proteins");
+						break;
+					case("pasta"):
+						$("#selector0").val("veggies");
+						$("#selector1").val("veggies");
+						$("#selector2").val("proteins");
+						$("#selector3").val("sauce");
+						$("#selector4").val("extra");
+						break;
 				}
 				fill_all();
 			}
