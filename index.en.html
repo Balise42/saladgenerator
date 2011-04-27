@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Salad Generator</title>
+  </head>
+  <body>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <button id="moar">+</button><br> 
+    <button id="premix">Premix</button><br> 
+    <script>
+			var current = 0;
+			var veggies = ["Tomato", "Avocado", "Mango", "Bell pepper", "Dried tomato", "Carrot", "Corn", "Chickpeas", "Chicory", "Red beans", "Beet", "Mushrooms"];
+			var cheese = ["Feta", "Gruyère", "Emmental", "Goat cheese", "Luzerner", "Roquefort", "Mozzarella"];
+			var proteins = ["Sausage", "Bacon", "Tuna", "Egg", "Chicken", "Nuggets", "Meatballs", "Salmon", "Ham", "Tofu"];
+			var extra = ["Croutons", "Egg", "Pinenuts"];
+			var base = ["Salad", "Pasta", "Rice", "Wheat", "Potatoes"]
+			function choose_element(i){
+				var choice = $("#selector"+i).val()
+				$("#result"+i).empty();
+				switch(choice){
+					case "veggies":
+						elems = veggies;
+						break;
+					case "cheese":
+						elems = cheese;
+						break;
+					case "proteins":
+						elems = proteins;
+						break;
+					case "extra":
+						elems = extra;
+						break;
+					case "base":
+						elems = base;
+						break;
+					default:
+						elems = [];
+						break;
+				}
+				var index=Math.floor(Math.random()*elems.length)
+				$("#result"+i).append(elems[index]);
+			}
+			
+			function create_selector(){
+				$("body").append("<select name='selector" + current + "' id='selector" + current +"'></select>");
+				$("body").append("<span id='result" + current + "'></span>");
+				$("body").append("<button name='change" + current + "' id='change"+current + "'>Som'thing else!</button>");
+				$("body").append("<br>");
+				$("#selector"+current).append("<option></option>");
+				$("#selector"+current).append("<option value='base'>Base</option>");
+				$("#selector"+current).append("<option value='veggies'>Veggies</option>");
+				$("#selector"+current).append("<option value='cheese'>Cheese</option>");
+				$("#selector"+current).append("<option value='proteins'>Proteins</option>");
+				$("#selector"+current).append("<option value='extra'>Extra</option>");
+				$("#selector"+current).change(function(event){
+					choose_element(event.target.id.replace("selector", ""));
+				});
+				$("#change"+current).click(function(event){
+					choose_element(event.target.id.replace("change", ""));
+				});
+				current++;
+			}
+      $(document).ready(function(){
+				for (var i = 1; i<= 5; i++) {
+					create_selector();
+				}
+				$("#moar").click(create_selector);
+				$("#premix").click(premix);
+        
+      }); 
+      function premix(){
+				$("#selector0").val("veggies");
+				$("#selector1").val("veggies");
+				$("#selector2").val("proteins");
+				$("#selector3").val("cheese");
+				$("#selector4").val("extra");
+				fill_all();
+			}
+			function fill_all(){
+				for (var i = 0; i<current; i++){
+					choose_element(i);
+				}
+			}
+    </script>
+  </body>
+</html>
