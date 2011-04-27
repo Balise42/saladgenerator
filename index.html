@@ -6,15 +6,14 @@
   </head>
   <body>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script src="ingredients.fr.js"></script>
     <button id="moar">+</button><br> 
-    <button id="premix">Prémix</button><br> 
+    <button id="premix">Prémix</button>
+    <input type="checkbox" id="needbase">Base ?</input><br>
+    <button id="lucky">I'm feeling lucky... kinda...</button><br>
     <script>
 			var current = 0;
-			var veggies = ["Tomate", "Avocat", "Mangue", "Poivron", "Tomate séchée", "Carotte", "Maïs", "Pois chiches", "Endive", "Haricots rouges", "Betterave", "Champignons"];
-			var cheese = ["Feta", "Gruyère", "Emmental", "Chèvre", "Luzerner", "Roquefort", "Mozzarella"];
-			var proteins = ["Saucisse", "Bacon", "Thon", "Œuf", "Poulet", "Nuggets", "Boulettes", "Saumon", "Jambon", "Thon", "Tofu", "Canard séché", "Gésiers", "Jambon cru"];
-			var extra = ["Croûtons", "Œuf dur", "Pignons"];
-			var base = ["Salade", "Pâtes", "Riz", "Blé", "Pommes de terre"]
+
 			function choose_element(i){
 				var choice = $("#selector"+i).val()
 				$("#result"+i).empty();
@@ -62,12 +61,12 @@
 				current++;
 			}
       $(document).ready(function(){
-				for (var i = 1; i<= 5; i++) {
+				for (var i = 0; i< 5; i++) {
 					create_selector();
 				}
 				$("#moar").click(create_selector);
 				$("#premix").click(premix);
-        
+				$("#lucky").click(lucky);  
       }); 
       function premix(){
 				$("#selector0").val("veggies");
@@ -75,12 +74,26 @@
 				$("#selector2").val("proteins");
 				$("#selector3").val("cheese");
 				$("#selector4").val("extra");
+				if($("#needbase").attr('checked')){
+					if(current <= 5){
+						create_selector();
+					}
+					$("#selector5").val("base");
+				}
 				fill_all();
 			}
 			function fill_all(){
 				for (var i = 0; i<current; i++){
 					choose_element(i);
 				}
+			}
+			function lucky(){
+				categories = ["veggies", "proteins", "cheese", "extra", "base"];
+				for (var i = 0; i<current; i++){
+					var cat= categories[Math.floor(Math.random()*categories.length)];
+					$("#selector"+i).val(cat);
+				}
+				fill_all()
 			}
     </script>
   </body>
