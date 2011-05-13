@@ -9,7 +9,7 @@
     <script src="ingredients.js"></script>
     <input type="radio" name="lang" value="fr" checked>Français</input>
     <input type="radio" name="lang" value="en">English</input><br>
-    <input type="radio" name="type-o-dish" VALUE="salad">Salad</input>
+    <input type="radio" name="type-o-dish" VALUE="salad" checked>Salad</input>
     <input type="radio" name="type-o-dish" VALUE="pizza">Pizza</input>
     <input type="radio" name="type-o-dish" VALUE="pasta">Pasta</input>
     <input type="radio" name="type-o-dish" VALUE="risotto">Risotto</input>
@@ -52,11 +52,11 @@
 			}
 			
       $(document).ready(function(){
-
 				$("#moar").click(create_selector);
 				$("#premix").click(premix);
 				$("#lucky").click(lucky);
 				$("input[type=radio]").click(redraw);
+        redraw();
       }); 
       
       function redraw(){
