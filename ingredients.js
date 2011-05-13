@@ -119,12 +119,20 @@ var pizza_fr_veggies = [
   "Tomate",
   "Oignon",
   "Roquette",
+  "Poivron",
+  "Champignons",
+  "Artichauts",
+  "Pommes de terre"
 ]
 
 var pizza_en_veggies = [
   "Tomato",
   "Onion",
-  "Arugula"
+  "Arugula",
+  "Bell pepper",
+  "Mushrooms",
+  "Artichoke",
+  "Potatoes"
 ]
 
 var pizza_fr_proteins = [
@@ -132,7 +140,10 @@ var pizza_fr_proteins = [
   "Poulet",
   "Chorizo",
   "Thon",
-  "Saucisses"
+  "Saucisses",
+  "Anchois",
+  "Jambon",
+  "Lardons"
 ]
 
 var pizza_en_proteins = [
@@ -140,7 +151,10 @@ var pizza_en_proteins = [
   "Chicken",
   "Chorizo",
   "Tuna",
-  "Sausage"
+  "Sausage",
+  "Anchovies",
+  "Ham",
+  "Lardons"
 ]
 
 var pizza_fr_cheese = [
@@ -164,13 +178,19 @@ var pizza_en_cheese = [
 var pizza_fr_extra = [
   "Œuf",
   "Pignons",
-  "Piment"
+  "Piment",
+  "Olives",
+  "Câpres",
+  "Ail"
 ]
 
 var pizza_en_extra = [
   "Egg",
   "Pine nuts",
-  "Chili"
+  "Chili",
+  "Olives",
+  "Capers",
+  "Garlic"
 ]
 
 cat_pasta = ["veggies", "proteins", "cheese", "extra", "sauce"];
