@@ -14,7 +14,8 @@ var salad_fr_veggies = [
   "Endive", 
   "Haricots rouges", 
   "Betterave", 
-  "Champignons"
+  "Champignons",
+  "Pomme"
 ];
 
 var salad_en_veggies = [
@@ -29,7 +30,8 @@ var salad_en_veggies = [
   "Chicory",
   "Red beans",
   "Beet",
-  "Mushroom"
+  "Mushroom",
+  "Apple"
 ]
 
 var salad_fr_cheese = [
@@ -101,7 +103,8 @@ var salad_fr_base = [
   "Pâtes", 
   "Riz", 
   "Blé", 
-  "Pommes de terre"
+  "Pommes de terre",
+  "Semoule"
 ]
 
 var salad_en_base = [
@@ -109,7 +112,8 @@ var salad_en_base = [
   "Pasta",
   "Rice",
   "Wheat",
-  "Potato"
+  "Potato",
+  "Couscous"
 ]
 
 cat_pizza = ["veggies", "proteins", "cheese", "extra"];
