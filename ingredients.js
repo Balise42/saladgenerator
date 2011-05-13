@@ -163,7 +163,8 @@ var pizza_fr_cheese = [
   "Bleu",
   "Raclette",
   "Emmental",
-  "Chèvre"
+  "Chèvre",
+  "Parmesan"
 ]
 
 var pizza_en_cheese = [
@@ -172,7 +173,8 @@ var pizza_en_cheese = [
   "Blue cheese",
   "Raclette",
   "Emmental",
-  "Goat cheese"
+  "Goat cheese",
+  "Parmesan"
 ]
 
 var pizza_fr_extra = [
@@ -181,7 +183,8 @@ var pizza_fr_extra = [
   "Piment",
   "Olives",
   "Câpres",
-  "Ail"
+  "Ail",
+  "Oignons frits"
 ]
 
 var pizza_en_extra = [
@@ -190,7 +193,8 @@ var pizza_en_extra = [
   "Chili",
   "Olives",
   "Capers",
-  "Garlic"
+  "Garlic",
+  "Fried onions"
 ]
 
 cat_pasta = ["veggies", "proteins", "cheese", "extra", "sauce"];
