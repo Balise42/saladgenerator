@@ -5,10 +5,12 @@ var catnames;
 var lang;
 
 function choose_element(i){
-  var elems = eval(type + "_" + lang + "_" + $("#selector"+i).val());
-  var index=Math.floor(Math.random()*elems.length);
-  $("#result"+i).empty();
-  $("#result"+i).append(elems[index]);
+  if(!$("#keep"+i).attr("checked") || !$("#result"+i).text()){
+    var elems = eval(type + "_" + lang + "_" + $("#selector"+i).val());
+    var index=Math.floor(Math.random()*elems.length);
+    $("#result"+i).empty();
+    $("#result"+i).append(elems[index]);
+  }
 }
 			
 function create_selector(){
@@ -16,10 +18,13 @@ function create_selector(){
   $("body").append("<select name='selector" + current + "' id='selector" + current +"'></select>");
   $("body").append("<span id='result" + current + "'></span>");
   var change_text = "Aut'chose !"
+  var keep_text = "Garder"
   if (lang == "en") {
     change_text = "Somethin'else!";
+    keep_text = "Keep";
   } 
   $("body").append("<button name='change" + current + "' id='change"+current + "'>" + change_text + "</button>");
+  $("body").append("<input type='checkbox' name='keep'" + current + "' id='keep"+current +"'>" + keep_text + "</button");
   $("body").append("</p>");
   $("#selector"+current).append("<option></option>");		
   for (key in catnames){
@@ -30,6 +35,15 @@ function create_selector(){
   });
   $("#change"+current).click(function(event){
     choose_element(event.target.id.replace("change", ""));
+  });
+  $("#keep"+current).change(function(event){
+    var itokeep = event.target.id.replace("keep", "");
+    if($("#keep"+itokeep).attr('checked')){
+      $("#change"+itokeep).disabled = false;
+    }
+    else{
+      $("#change"+itokeep).disabled = true;
+    }
   });
   current++;
 }
