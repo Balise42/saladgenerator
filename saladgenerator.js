@@ -15,7 +15,11 @@ function create_selector(){
   $("body").append("<p>");
   $("body").append("<select name='selector" + current + "' id='selector" + current +"'></select>");
   $("body").append("<span id='result" + current + "'></span>");
-  $("body").append("<button name='change" + current + "' id='change"+current + "'>Aut'chose!</button>");
+  var change_text = "Aut'chose !"
+  if (lang == "en") {
+    change_text = "Somethin'else!";
+  } 
+  $("body").append("<button name='change" + current + "' id='change"+current + "'>" + change_text + "</button>");
   $("body").append("</p>");
   $("#selector"+current).append("<option></option>");		
   for (key in catnames){
