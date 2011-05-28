@@ -39,10 +39,10 @@ function create_selector(){
   $("#keep"+current).change(function(event){
     var itokeep = event.target.id.replace("keep", "");
     if($("#keep"+itokeep).attr('checked')){
-      $("#change"+itokeep).disabled = false;
+      $("#change"+itokeep).attr('disabled', 'true');
     }
     else{
-      $("#change"+itokeep).disabled = true;
+      $("#change"+itokeep).removeAttr("disabled");
     }
   });
   current++;
