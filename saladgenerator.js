@@ -58,10 +58,10 @@ $(document).ready(function(){
     else{
       $("#errors").empty();
       if(lang == "fr"){
-        $("#errors").append("Banane !");
+        $("#errors").append("Veuillez choisir une catégorie.");
       }
       if(lang == "en"){
-        $("#errors").append("banana");
+        $("#errors").append("Please choose a category.");
       }
     }
   });
