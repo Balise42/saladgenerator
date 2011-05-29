@@ -2,7 +2,7 @@ var current = 0;
 var type;
 var categories;
 var catnames;
-var lang;
+var lang="fr";
 
 function choose_element(i){
   if(!$("#keep"+i).attr("checked") || !$("#result"+i).text()){
@@ -40,20 +40,37 @@ function create_selector(){
     var itokeep = event.target.id.replace("keep", "");
     if($("#keep"+itokeep).attr('checked')){
       $("#change"+itokeep).attr('disabled', 'true');
+      $("#selector"+itokeep).attr('disabled', 'true');
     }
     else{
       $("#change"+itokeep).removeAttr("disabled");
+      $("selector"+itokeep).removeAttr("disabled");  
     }
   });
   current++;
 }
 			
 $(document).ready(function(){
-  $("#moar").click(create_selector);
+  $("#moar").click(function(event){
+    if($("input[name=type-o-dish]:checked").val()){
+      create_selector();
+    }
+    else{
+      $("#errors").empty();
+      if(lang == "fr"){
+        $("#errors").append("Banane !");
+      }
+      if(lang == "en"){
+        $("#errors").append("banana");
+      }
+    }
+  });
   $("#premix").click(premix);
   $("#lucky").click(lucky);
   $("input[type=radio]").click(redraw);
-  redraw();
+  $("input[name=type-o-dish]").click(function(event){
+    $("#errors").empty();
+  });
 }); 
       
 function redraw(){
@@ -115,8 +132,10 @@ function fill_all(){
 
 function lucky(){				
   for (var i = 0; i<current; i++){
-    var cat= categories[Math.floor(Math.random()*categories.length)];
-    $("#selector"+i).val(cat);
+    if(!$("#keep"+i).attr("checked") || !$("#result"+i).text()){ 
+      var cat= categories[Math.floor(Math.random()*categories.length)];
+     $("#selector"+i).val(cat);
+    }
   }
   fill_all()
 }
