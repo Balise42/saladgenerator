@@ -15,7 +15,8 @@ function choose_element(i){
 			
 function create_selector(){
   $("body").append("<p>");
-  $("body").append("<select name='selector" + current + "' id='selector" + current +"'></select>");
+  $("body").append("<span id='selectorspan" + current + "' class='selectorspan'></span>");
+  $("#selectorspan"+current).append("<select name='selector" + current + "' id='selector" + current +"'></select>");
   $("body").append("<span id='result" + current + "'></span>");
   var change_text = "Aut'chose !"
   var keep_text = "Garder"
@@ -24,7 +25,8 @@ function create_selector(){
     keep_text = "Keep";
   } 
   $("body").append("<button name='change" + current + "' id='change"+current + "'>" + change_text + "</button>");
-  $("body").append("<input type='checkbox' name='keep'" + current + "' id='keep"+current +"'>" + keep_text + "</button");
+  $("body").append("<input type='checkbox' name='keep" + current + "' id='keep"+current +"' />");
+  $("#keep"+current).append("plop");
   $("body").append("</p>");
   $("#selector"+current).append("<option></option>");		
   for (key in catnames){
@@ -76,9 +78,12 @@ $(document).ready(function(){
 function redraw(){
   for (var i = 0; i<current; i++){
     $("#selector"+i).remove();
+    $("#selectorspan"+i).remove();
     $("#change"+i).remove();
     $("#result"+i).remove();
     $("p").remove();
+    $("#keep"+i).empty();
+    $("#keep"+i).remove();
   }
   type = $("input[name=type-o-dish]:checked").val();
   lang = $("input[name=lang]:checked").val();
