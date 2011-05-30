@@ -44,7 +44,7 @@ function create_selector(){
     }
     else{
       $("#change"+itokeep).removeAttr("disabled");
-      $("selector"+itokeep).removeAttr("disabled");  
+      $("#selector"+itokeep).removeAttr("disabled");  
     }
   });
   current++;
